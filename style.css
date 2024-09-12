@@ -1,0 +1,212 @@
+body {
+    margin: 0;
+    padding-top: 0px; /* Memberikan jarak dari atas halaman */
+}
+
+html {
+    width: calc(100% - 2cm); /* Mengurangi lebar total dengan 2 cm di setiap sisi */
+    height: calc(100% - 2cm); /* Mengurangi tinggi total dengan 2 cm di setiap sisi */
+    padding: 1cm; /* Menambahkan padding 2 cm di setiap sisi */
+    background: linear-gradient(325deg,  #03001e 0%,#1929b6 30%,#ec38bc 70%, #fdeff9 100%);
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+}
+
+.game {
+    padding-top: 100px; /* Menambahkan padding atas jika diperlukan */
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    margin-top: 0px; 
+    flex-direction: column;
+    align-items: center; /* Menyusun konten di tengah */
+}
+.controls {
+    display: flex;
+    position: relative;
+    gap: 14px; /* Menambah jarak antara tombol dan elemen lainnya */
+    margin-bottom: 18px; /* Menambah margin bawah */
+}
+
+button {
+    background: #FDF8E6;
+    color: #282A3A;
+    border-radius: 10px; /* Membesarkan radius border */
+    padding: 10px 20px; /* Membesarkan ukuran padding tombol */
+    border: 0;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18pt; /* Membesarkan ukuran font pada tombol */
+    font-weight: bold;
+}
+.disabled {
+    color: #757575;
+}
+.stats {
+    color: #FDF8E6;
+    font-size: 18pt; /* Ukuran font untuk stats */
+    font-weight: bold;
+    margin-left: 14px; /* Menambah jarak kiri antara stats dan tombol */
+}
+
+.timer {
+    font-size: 16pt; /* Mengatur ukuran font khusus untuk timer */
+    font-weight: normal;
+    margin-top: 9px; /* Menambah jarak atas untuk timer */
+}
+
+.board-container {
+    position: relative;
+    padding: 2px; /* Mengurangi padding agar kartu tidak terlalu dekat dengan tepi */
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: none;
+}
+
+.game-container {
+    display: flex;
+    gap: 17px; /* Jarak antara papan utama dan papan tambahan */
+}
+
+.board,
+.win {
+    border-radius: 10px;
+    box-shadow: none;
+    background: none;
+    transition: transform .6s cubic-bezier(0.4, 0.0, 0.2, 1);
+    backface-visibility: hidden;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 15px; /* Mengurangi jarak antar kartu */
+}
+
+.board-container.flipped .board {
+    transform: rotateY(180deg) rotateZ(50deg);
+}
+.board-container.flipped .win {
+    transform: rotateY(0) rotateZ(0);
+}
+.card {
+    position: relative;
+    width: 80px; /* Mengurangi ukuran kartu */
+    height: 80px; /* Mengurangi ukuran kartu */
+    cursor: pointer;
+}
+.card-front,
+.card-back {
+    position: absolute;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    background: #282A3A;
+    transition: transform .6s cubic-bezier(0.4, 0.0, 0.2, 1);
+    backface-visibility: hidden;
+}
+.card-back {
+    transform: rotateY(180deg) rotateZ(50deg);
+    font-size: 18pt;
+    font-weight: 500; /* Mengurangi ukuran font pada kartu */
+    user-select: none;
+    text-align: center;
+    line-height: 80px; /* Sesuaikan dengan ukuran kartu */
+    background: #FDF8E6;
+}
+.card.flipped .card-front {
+    transform: rotateY(180deg) rotateZ(50deg);
+}
+.card.flipped .card-back {
+    transform: rotateY(0) rotateZ(0);
+}
+.win {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background: #FDF8E6;
+    transform: rotateY(180deg) rotateZ(50deg);
+}
+.win-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18pt; /* Mengurangi ukuran font pada teks kemenangan */
+    color: #282A3A;
+}
+.highlight {
+    color: #7303c0;
+}
+
+
+.additional-board {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 15px;
+    position: absolute;    /* Mengurangi jarak antar kartu */
+    left: calc(100% + 195px); /* Jarak antara papan utama dan kartu tambahan */
+}
+
+.additional-card {
+    position: relative;
+    width: 100px; 
+    height: 80px; 
+    cursor: pointer;
+}
+
+.additional-card .card-front,
+.additional-card .card-back {
+    position: absolute;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    background: #282A3A;
+    transition: transform .6s cubic-bezier(0.4, 0.0, 0.2, 1);
+    backface-visibility: hidden;
+}
+
+.additional-card .card-back {
+    transform: rotateY(180deg) rotateZ(50deg);
+    font-size: 14pt; 
+    font-weight: 500;
+    user-select: none;
+    text-align: center;
+    line-height: 83px; 
+    background: #FDF8E6;
+}
+
+.additional-card.flipped .card-front {
+    transform: rotateY(180deg) rotateZ(50deg);
+}
+
+.additional-card.flipped .card-back {
+    transform: rotateY(0) rotateZ(0);
+}
+
+
+.stats {
+    color: #FDF8E6;
+    font-size: 24pt; /* Mengurangi ukuran font */
+    font-weight: bold;
+}
+
+.part-of-speech {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 20px; /* adjust the margin to your liking */
+  }
+
+h1 {
+    color: #FDF8E6;
+    font-size: 36pt; /* Ukuran font untuk judul */
+    font-weight: bold;
+    text-align: center; /* Rata tengah */
+    margin: 0 0 20px 0; /* Margin atas 0, margin bawah 20px */
+}
